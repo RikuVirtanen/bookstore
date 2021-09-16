@@ -43,6 +43,14 @@ public class Book {
 		this.isbn = isbn;
 		this.price = 0;
 	}
+	
+	public Long getId() {
+		return this.id;
+	}
+	
+	public void setId(Long id) {
+		this.id = id;
+	}
 
 	public String getTitle() {
 		return title;

@@ -29,8 +29,8 @@ public class BookstoreApplication {
 			private String isbn;
 			private double price; 
 			********************/
-			repository.save(new Book("A Farewell to Arms", "Ernest Hemingway", 1929, "1232323-21"));
-			repository.save(new Book("Animal Farm", "George Orwell", 1945, "2212343-5"));
+			repository.save(new Book("Cloud Atlas", "David Mitchell", 2004, "9781444730876"));
+			repository.save(new Book("The Hunger Games", "Suzanne Collins", 2008, "978-0-439-02348-1"));
 			
 			log.info("fetch all books");
 			for(Book book: repository.findAll()) {

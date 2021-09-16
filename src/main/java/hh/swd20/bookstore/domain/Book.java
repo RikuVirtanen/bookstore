@@ -34,7 +34,15 @@ public class Book {
 		this.isbn = isbn;
 		this.price = price;
 	}
-
+	
+	public Book(String title, String author, int year, String isbn) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+		this.price = 0;
+	}
 
 	public String getTitle() {
 		return title;

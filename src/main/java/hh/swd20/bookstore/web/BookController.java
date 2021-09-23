@@ -30,11 +30,12 @@ public class BookController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveBook(@ModelAttribute Book book) {
+		// jos id arvo on 0 tai null - SQL insert muuten SQL update 
 		repository.save(book);
 		return "redirect:/booklist";
 	}
 	
-	@RequestMapping(value="/add")
+	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
 		return "addbook";

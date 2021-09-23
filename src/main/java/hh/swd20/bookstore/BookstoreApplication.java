@@ -23,13 +23,14 @@ public class BookstoreApplication {
 	@Bean
 	public CommandLineRunner bookstoreApp(BookRepository bookRepository, CategoryRepository categoryRepository) {
 		return (args) -> {
-			
-			
 			log.info("insert example data to database");
 			
-			categoryRepository.save(new Category("Horror"));
-			categoryRepository.save(new Category("Historical"));
-			categoryRepository.save(new Category("Fiction"));
+			Category horror = new Category("Horror");
+			categoryRepository.save(horror);
+			Category historical = new Category("Historical");
+			categoryRepository.save(historical);
+			Category fiction = new Category("Fiction");
+			categoryRepository.save(fiction);
 			
 			log.info("fetch all categories");
 			for(Category category: categoryRepository.findAll()) {
@@ -42,8 +43,8 @@ public class BookstoreApplication {
 			private String isbn;
 			private double price; 
 			********************/
-			bookRepository.save(new Book("Cloud Atlas", "David Mitchell", 2004, "9781444730876"));
-			bookRepository.save(new Book("The Hunger Games", "Suzanne Collins", 2008, "978-0-439-02348-1"));
+			bookRepository.save(new Book("Cloud Atlas", "David Mitchell", 2004, "9781444730876", fiction));
+			bookRepository.save(new Book("The Hunger Games", "Suzanne Collins", 2008, "978-0-439-02348-1", fiction));
 			
 			log.info("fetch all books");
 			for(Book book: bookRepository.findAll()) {

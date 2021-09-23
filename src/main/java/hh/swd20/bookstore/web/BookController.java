@@ -10,12 +10,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
+import hh.swd20.bookstore.domain.CategoryRepository;
 
 @Controller
 public class BookController {
 	
 	@Autowired
-	private BookRepository repository;
+	private BookRepository bookRepository;
+	
+	@Autowired
+	private CategoryRepository categoryRepository;
 	
 	@RequestMapping(value="/index")
 	public String getIndex(Model model) {
@@ -24,32 +28,34 @@ public class BookController {
 	
 	@RequestMapping(value="/booklist", method=RequestMethod.GET)
 	public String listBooks(Model model) {
-		model.addAttribute("books", repository.findAll());
+		model.addAttribute("books", bookRepository.findAll());
 		return "booklist";
 	}
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveBook(@ModelAttribute Book book) {
 		// jos id arvo on 0 tai null - SQL insert muuten SQL update 
-		repository.save(book);
+		bookRepository.save(book);
 		return "redirect:/booklist";
 	}
 	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "addbook";
 	}
 	
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
-		model.addAttribute("book", repository.findById(bookId).get());
+		model.addAttribute("book", bookRepository.findById(bookId).get());
+		model.addAttribute("categories", categoryRepository.findAll());
 		return "editbook";
 	}
 	
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId) {
-		repository.deleteById(bookId);
+		bookRepository.deleteById(bookId);
 		return "redirect:../booklist";
 	}
 }

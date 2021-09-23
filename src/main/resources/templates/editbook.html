@@ -18,6 +18,15 @@
 			<input type="text" id="isbn" th:field="*{isbn}" /><br/>
 			<label for="year">Year</label>
 			<input type="number" min="1000" max="2099" id="year" th:field="*{year}" /><br/>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>						
+		  	<label for="categorylist">Category</label>
+			 <select id="categorylist" th:field="*{category}" class="form-control">
+       			<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
+    		</select>
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
 			<input type="submit" value="Save"></input> <input type="reset" value="Reset" />
 		</form>
 	</div>

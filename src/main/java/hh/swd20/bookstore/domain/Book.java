@@ -23,7 +23,7 @@ public class Book {
 	@ManyToOne
 	// JsonIgnoreProperties - one way to avoid infinite loop during JSON serialization/deserialization with bidirectional relationships
 	@JsonIgnoreProperties("books")
-	@JoinColumn(name= "categoryId")
+	@JoinColumn(name= "categoryid")
 	private Category category;
 	
 	public Book() {
@@ -33,6 +33,17 @@ public class Book {
 		this.year = 0;
 		this.isbn = null;
 		this.price = 0;
+		this.category = null;
+	}
+	
+	public Book(String title, String author, int year, String isbn) {
+		super();
+		this.title = title;
+		this.author = author;
+		this.year = year;
+		this.isbn = isbn;
+		this.price = 0;
+		this.category = null;
 	}
 	
 	public Book(String title, String author, int year, String isbn, double price, Category category) {

@@ -28,11 +28,6 @@ public class BookController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
-	@RequestMapping(value="/index")
-	public String getIndex(Model model) {
-		return "bookstore";
-	}
-	
 	@RequestMapping(value="/booklist", method=RequestMethod.GET)
 	public String listBooks(Model model) {
 		model.addAttribute("books", bookRepository.findAll());
@@ -43,7 +38,7 @@ public class BookController {
 	
 	// RESTful service to get all books 
 	@RequestMapping(value="/books", method=RequestMethod.GET)
-	public @ResponseBody List<Book> bookListRest() {
+	public @ResponseBody List<Book> bookList() {
 		return (List<Book>) bookRepository.findAll();
 	}
 	
@@ -62,7 +57,7 @@ public class BookController {
 	
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveBook(@ModelAttribute Book book) {
-		// jos id arvo on 0 tai null - SQL insert muuten SQL update 
+		// if id equals 0 or null - SQL insert otherwise SQL update 
 		bookRepository.save(book);
 		return "redirect:/booklist";
 	}

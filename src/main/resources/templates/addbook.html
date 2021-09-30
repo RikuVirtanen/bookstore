@@ -3,10 +3,12 @@
 <head>
 	<title>Add book</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{css/styles.css}"/>
 </head>
 <body>
 	<h1>Add book</h1>
-	<div>
+	<div class="add-book-form">
 		<form th:object="${book}" th:action="@{/save}" action="#" method="post">
 			<label for="author">Author</label>
 			<input type="text" id="author" th:field="*{author}" /><br/>
@@ -19,13 +21,18 @@
 			
 			<div style="clear: both; display: block; height: 10px;"></div>						
 		  	<label for="categorylist">Category</label>
-			 <select id="categorylist" th:field="*{category}" class="form-control">
+			 <select id="categorylist" th:field="*{category}" class="form-control" style="max-width:150px">
+			 	<option selected value=" "></option>
        			<option th:each="category: ${categories}" th:value="${category.id}" th:text="${category.name}"></option>
     		</select>
+    		<div style="clear: both; display: block; height: 10px;"></div>
+    		<a class="btn btn-success" th:href="@{addcategory}">Add category</a>
 			
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-			<input type="submit" value="Save"></input> <input type="reset" value="Reset" />
+			<input class="btn btn-success" type="submit" value="Save"></input> 
+			<input class="btn btn-danger" type="reset" value="Reset" />
+			<a class="btn btn-success" href="index;" >Main</a>
 		</form>
 	</div>
 </body>

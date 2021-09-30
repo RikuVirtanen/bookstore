@@ -3,15 +3,18 @@
 <head>
 	<title>Add book</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Add book</h1>
+	<h1>Add Category</h1>
 	<div>
 		<form th:object="${category}" th:action="@{/savecategory}" action="#" method="post">
 			<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" /><br/>
-
-			<input type="submit" value="Save"></input> <input type="reset" value="Reset" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input class="btn btn-success" type="submit" value="Save"></input> 
+			<input class="btn btn-danger" type="reset" value="Reset" />
+			<a class="btn btn-success" href="index;" >Main</a>
 		</form>
 	</div>
 </body>

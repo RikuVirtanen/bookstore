@@ -6,19 +6,32 @@
 <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
 </head>
 <body>
-	<h1>Categories</h1>
-	<table class="table table-striped">
-		<tr>
-			<th>Name: </th>
-		</tr>
-		<tr th:each = "category : ${categories}">
-			<td th:text="${category.name}"></td>
-			<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.id})}">Delete</a></td>
-			<!-- <td><a class="btn btn-success" th:href="@{/editcategory/{id}(id=${category.id})}">Edit</a></td> -->
-		</tr>
-	</table>
-	<a class="btn btn-success" href="/addcategory">Add category</a>
-	<a class="btn btn-success" href="/index" >Main</a>
-
+	<div class="container">
+		<div class="col-md-4">
+			<h1>Categories</h1>
+		</div>
+		
+		<div class="col-md-4">
+			<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		</div>
+		<div class="col-md-4" style="padding:20px 0">
+			<form th:action="@{/logout}" method="post">
+				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+			</form>
+		</div>
+		<table class="table table-striped">
+			<tr>
+				<th>Name: </th>
+			</tr>
+			<tr th:each = "category : ${categories}">
+				<td th:text="${category.name}"></td>
+				<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.id})}">Delete</a></td>
+				<!-- <td><a class="btn btn-success" th:href="@{/editcategory/{id}(id=${category.id})}">Edit</a></td> -->
+			</tr>
+		</table>
+		<a class="btn btn-success" href="/addcategory">Add category</a>
+		<a class="btn btn-success" href="/index">Main</a>
+	</div>
+	
 </body>
 </html>

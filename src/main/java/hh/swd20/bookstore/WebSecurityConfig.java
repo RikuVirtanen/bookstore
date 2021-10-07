@@ -24,22 +24,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http
-		.authorizeRequests().antMatchers("/css/**").permitAll()
-		.and()
-		.authorizeRequests().anyRequest().authenticated()
-		.and()
-	  .formLogin()
-		  .defaultSuccessUrl("/booklist", true)
-		  .permitAll()
-		  .and()
-	  .logout()
-	      .permitAll();
+			.authorizeRequests()
+				/*.antMatchers("/css/**").permitAll()
+				.antMatchers("/", "/booklist").permitAll()				
+				.and()
+				.authorizeRequests()*/
+				.anyRequest().authenticated()
+				.and()
+			.formLogin()
+				.defaultSuccessUrl("/booklist", true)
+				.permitAll()
+				.and()
+			.logout()
+				.permitAll();
 	}
 	
 	@Bean
 	@Override
 	public UserDetailsService userDetailsService() {
-		List<UserDetails> users = new ArrayList();
+		List<UserDetails> users = new ArrayList<>();
 		
 		PasswordEncoder passwordEncoder = PasswordEncoderFactories.createDelegatingPasswordEncoder();
 		

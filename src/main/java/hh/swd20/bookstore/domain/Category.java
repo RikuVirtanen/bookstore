@@ -9,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 @Entity
 public class Category {
 	@Id
@@ -19,8 +17,6 @@ public class Category {
 	private String name;
 	
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "category")
-	// @JsonIgnore
-	@JsonIgnoreProperties("category")
 	private List<Book> books;
 	
 	public Category() {

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -25,7 +25,7 @@
 			</tr>
 			<tr th:each = "category : ${categories}">
 				<td th:text="${category.name}"></td>
-				<td sec:authorize="hasRole('ADMIN')"><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.id})}">Delete</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.id})}">Delete</a></td>
 				<!-- <td><a class="btn btn-success" th:href="@{/editcategory/{id}(id=${category.id})}">Edit</a></td> -->
 			</tr>
 		</table>

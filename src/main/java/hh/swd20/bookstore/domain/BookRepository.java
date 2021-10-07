@@ -14,9 +14,6 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 	Optional<Book> findById(Long id);*/
 	
 	@RestResource
-	public Optional<Book> findById(@Param("id") Long id);
-	
-	@RestResource
 	public List<Book> findByAuthor(@Param("author") String author);
 	
 	@RestResource

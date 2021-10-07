@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class BookstoreController {
 	
 	@RequestMapping(value="/index")
-	public String getIndex(Model model) {
+	public String getIndex() {
 		return "index";
 	}
 	

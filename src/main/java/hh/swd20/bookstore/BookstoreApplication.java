@@ -11,6 +11,8 @@ import hh.swd20.bookstore.domain.Book;
 import hh.swd20.bookstore.domain.BookRepository;
 import hh.swd20.bookstore.domain.Category;
 import hh.swd20.bookstore.domain.CategoryRepository;
+import hh.swd20.bookstore.domain.User;
+import hh.swd20.bookstore.domain.UserRepository;
 
 @SpringBootApplication
 public class BookstoreApplication {
@@ -21,7 +23,7 @@ public class BookstoreApplication {
 	}
 	
 	@Bean
-	public CommandLineRunner bookstoreApp(BookRepository bookRepository, CategoryRepository categoryRepository) {
+	public CommandLineRunner bookstoreApp(BookRepository bookRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
 		return (args) -> {
 			log.info("insert example data to database");
 			
@@ -45,6 +47,11 @@ public class BookstoreApplication {
 			********************/
 			bookRepository.save(new Book("Cloud Atlas", "David Mitchell", 2004, "9781444730876", fiction));
 			bookRepository.save(new Book("The Hunger Games", "Suzanne Collins", 2008, "978-0-439-02348-1", fiction));
+			
+			// create users: admin/admin user/user
+			userRepository.save(new User("user", "$2a$10$7fDUJhaHcW..lozviLnwbuOw6G8VK/tHq4ew/Vo5J47LEX/SUv/KS", "USER"));
+			userRepository.save(new User("admin", "$2a$10$FfqOrHQA9ACQQCVIM7wSNeQqfMN/Seix1zVjWgQWPSbiI4qL7dFo6", "ADMIN"));
+			
 			
 			log.info("fetch all books");
 			for(Book book: bookRepository.findAll()) {

@@ -29,6 +29,11 @@ public class BookController {
 	@Autowired
 	private CategoryRepository categoryRepository;
 	
+	@RequestMapping(value="/login")
+	public String login() {
+		return "login";
+	}
+	
 	@RequestMapping(value="/booklist", method=RequestMethod.GET)
 	public String listBooks(Model model) {
 		model.addAttribute("books", bookRepository.findAll());
@@ -77,7 +82,7 @@ public class BookController {
 		return "editbook";
 	}
 	
-	@PreAuthorize(value="hasRole('ADMIN')")
+	@PreAuthorize(value="hasAuthority('ADMIN')")
 	@RequestMapping(value="/delete/{id}", method=RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId) {
 		bookRepository.deleteById(bookId);

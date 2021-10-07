@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -67,7 +68,7 @@ public class CategoryController {
 		model.addAttribute("category", repository.findById(categoryId).get());
 		return "editcategory";
 	}
-	
+	@PreAuthorize(value="hasRole('ADMIN')")
 	@RequestMapping(value="/deletecategory/{id}", method=RequestMethod.GET)
 	public String deleteCategory(@PathVariable("id") Long categoryId) {
 		repository.deleteById(categoryId);

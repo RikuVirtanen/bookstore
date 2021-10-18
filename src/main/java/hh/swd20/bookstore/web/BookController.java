@@ -68,6 +68,17 @@ public class BookController {
 		return "redirect:/booklist";
 	}
 	
+	@RequestMapping(value="/savenew", method=RequestMethod.POST)
+	public String saveNewBook(@ModelAttribute Book book) {
+		if(!bookRepository.findByTitle(book.getTitle().toLowerCase()).isEmpty()) {
+			return "redirect:/booklist";
+		}
+		book.setTitle(book.getTitle().toLowerCase());
+		// if id equals 0 or null - SQL insert otherwise SQL update 
+		bookRepository.save(book);
+		return "redirect:/booklist";
+	}
+	
 	@RequestMapping(value="/add", method=RequestMethod.GET)
 	public String addBook(Model model) {
 		model.addAttribute("book", new Book());

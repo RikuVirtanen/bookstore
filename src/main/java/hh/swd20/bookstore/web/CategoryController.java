@@ -75,6 +75,7 @@ public class CategoryController {
 	@PreAuthorize(value="hasAuthority('ADMIN')")
 	@RequestMapping(value="/deletecategory/{id}", method=RequestMethod.GET)
 	public String deleteCategory(@PathVariable("id") Long categoryId) {
+		
 		repository.deleteById(categoryId);
 		return "redirect:../categorylist";
 	}

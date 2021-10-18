@@ -13,7 +13,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 	</div>
 	<div style="clear: both; display: block; height: 30px;"></div>
 	<div class="add-book-form container">
-		<form th:object="${book}" th:action="@{/save}" action="#" method="post">
+		<form th:object="${book}" th:action="@{/savenew}" action="#" method="post">
 			<label for="author">Author</label>
 			<input type="text" id="author" th:field="*{author}" /><br/>
 			<label for="title">Title</label>

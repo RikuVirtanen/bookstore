@@ -45,8 +45,8 @@ public class BookstoreApplication {
 			private String isbn;
 			private double price; 
 			********************/
-			bookRepository.save(new Book("Cloud Atlas", "David Mitchell", 2004, "9781444730876", fiction));
-			bookRepository.save(new Book("The Hunger Games", "Suzanne Collins", 2008, "978-0-439-02348-1", fiction));
+			bookRepository.save(new Book("cloud atlas", "david mitchell", 2004, "9781444730876", fiction));
+			bookRepository.save(new Book("the hunger games", "suzanne collins", 2008, "978-0-439-02348-1", fiction));
 			
 			// create users: admin/admin user/user
 			userRepository.save(new User("user", "$2a$10$7fDUJhaHcW..lozviLnwbuOw6G8VK/tHq4ew/Vo5J47LEX/SUv/KS", "USER"));

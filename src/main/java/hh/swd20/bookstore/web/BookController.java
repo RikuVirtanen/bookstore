@@ -64,16 +64,18 @@ public class BookController {
 	@RequestMapping(value="/save", method=RequestMethod.POST)
 	public String saveBook(@ModelAttribute Book book) {
 		// if id equals 0 or null - SQL insert otherwise SQL update 
+		book.setAuthor(capitalize(book.getAuthor()));
+		book.setTitle(capitalize(book.getTitle()));
 		bookRepository.save(book);
 		return "redirect:/booklist";
 	}
 	
 	@RequestMapping(value="/savenew", method=RequestMethod.POST)
 	public String saveNewBook(@ModelAttribute Book book) {
-		if(!bookRepository.findByTitle(book.getTitle().toLowerCase()).isEmpty()) {
+		if(!bookRepository.findByTitle(capitalize(book.getTitle())).isEmpty()) {
 			return "redirect:/booklist";
 		}
-		book.setTitle(book.getTitle().toLowerCase());
+		book.setTitle(capitalize(book.getTitle()));
 		// if id equals 0 or null - SQL insert otherwise SQL update 
 		bookRepository.save(book);
 		return "redirect:/booklist";
@@ -99,5 +101,17 @@ public class BookController {
 	public String deleteBook(@PathVariable("id") Long bookId) {
 		bookRepository.deleteById(bookId);
 		return "redirect:../booklist";
+	}
+	
+	public String capitalize(String word) {
+		String words[] = word.split("\\s");
+		String outcome = "";
+		for (String w: words) {
+			String first = w.substring(0, 1);
+			String rest = w.substring(1);
+			outcome += first.toUpperCase() + rest.toLowerCase() + " ";
+		}
+		
+		return outcome.trim();
 	}
 }

@@ -52,12 +52,24 @@ public class Category {
 	public void setBooks(List<Book> books) {
 		this.books = books;
 	}
+	
+	public String capitalize(String word) {
+		String words[] = word.split("\\s");
+		String outcome = "";
+		for (String w: words) {
+			String first = w.substring(0, 1);
+			String rest = w.substring(1);
+			outcome += first.toUpperCase() + rest + " ";
+		}
+		
+		return outcome.trim();
+	}
 
 	@Override
 	public String toString() {
 		
 		// Do not insert list attributes here!
-		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
+		return "Category [categoryid=" + categoryid + ", name=" + capitalize(name) + "]";
 	}
 	
 }

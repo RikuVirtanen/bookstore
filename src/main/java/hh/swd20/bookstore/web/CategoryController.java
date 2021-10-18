@@ -59,10 +59,10 @@ public class CategoryController {
 	
 	@RequestMapping(value="/savecategory", method=RequestMethod.POST)
 	public String saveCategory(@ModelAttribute Category category) {
-		if(!repository.findByName(category.getName().toLowerCase()).isEmpty()) {
+		if(!repository.findByName(capitalize(category.getName())).isEmpty()) {
 			return "redirect:/categorylist";
 		}
-		category.setName(category.getName().toLowerCase());
+		category.setName(capitalize(category.getName()));
 		repository.save(category);
 		return "redirect:/categorylist";
 	}
@@ -78,5 +78,17 @@ public class CategoryController {
 		
 		repository.deleteById(categoryId);
 		return "redirect:../categorylist";
+	}
+	
+	public String capitalize(String word) {
+		String words[] = word.split("\\s");
+		String outcome = "";
+		for (String w: words) {
+			String first = w.substring(0, 1);
+			String rest = w.substring(1);
+			outcome += first.toUpperCase() + rest.toLowerCase() + " ";
+		}
+		
+		return outcome.trim();
 	}
 }

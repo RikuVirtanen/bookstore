@@ -121,13 +121,13 @@ public class Book {
 	public void setCategory(Category category) {
 		this.category = category;
 	}
-
+	
 	@Override
 	public String toString() {
 		
 		if(this.category != null) {
 			return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
-					+ ", price=" + price + "category=" + this.getCategory() + "]";
+					+ ", price=" + price + "category=" + this.getCategory().getName() + "]";
 		} else {
 			return "Book [id=" + id + ", title=" + title + ", author=" + author + ", year=" + year + ", isbn=" + isbn
 					+ ", price=" + price + "]";

@@ -25,6 +25,9 @@
 				<th>Title</th>
 				<th>ISBN</th>
 				<th>Year</th>
+				<th>Category</th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
 			</tr>
 			<tr th:each = "book : ${books}">
 				<td th:text="${book.author}"></td>
@@ -32,8 +35,17 @@
 				<td th:text="${book.isbn}"></td>
 				<td th:text="${book.year}"></td>
 				<td th:text="${book?.category?.name}"></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/delete/{id}(id=${book.id})}">Delete</a></td>
-				<td><a class="btn btn-success" th:href="@{/edit/{id}(id=${book.id})}">Edit</a></td>
+				<td sec:authorize="hasAuthority('ADMIN')">
+					<a class="btn btn-success" th:href="@{/edit/{id}(id=${book.id})}" >Edit</a>
+				</td>
+				<td sec:authorize="hasAuthority('ADMIN')">
+					<a 
+						class="btn btn-danger" 
+						th:href="@{/delete/{id}(id=${book.id})}" 
+						onclick="return confirm('Are you sure you wish to delete')" >
+							Delete
+					</a>
+				</td>
 			</tr>
 		</table>
 		<a class="btn btn-success" href="/add">Add a book</a>

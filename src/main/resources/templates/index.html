@@ -4,28 +4,34 @@
 	<title>Bookstore</title>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{css/bootstrap.min.css}" />
-	<link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{css/styles.css}" />
+	<link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{css/styles.css}"/>
+
 </head>
 <body>
 
-	<div class="container">
+	<div class="main">
 		<div class="col-md-4">
 			<h1>Welcome to the Bookstore</h1>
 		</div>
+	</div>
+	<div class="main">
 		<div class="col-md-4">
 			<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
 		</div>
+	</div>
+	<div class="main">
 		<div class="col-md-4" style="padding:20px 0">
 			<form th:action="@{/logout}" method="post">
 				<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
 			</form>
 			
 		</div>
+	</div>
+	<div class="main">
 		<div class="col-md-4" style="padding:20px 0">
 			<a class="btn btn-success" th:href="@{/booklist}">Books</a>
 			<a class="btn btn-success" th:href="@{/categorylist}">Categories</a>
 		</div>
-		
 	</div>
 	
 </body>

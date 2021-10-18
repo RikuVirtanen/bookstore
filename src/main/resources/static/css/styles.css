@@ -1,7 +1,23 @@
 @charset "ISO-8859-1";
 
-.container {
+body {
 	width: 100%;
 	height: 100%;
-	display: block;
+}
+
+h1 {
+	position: relative;
+}
+
+.container {
+	display: grid;
+	justify-content: center;
+	align-items: center;
+	top: 50px;
+}
+
+.main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

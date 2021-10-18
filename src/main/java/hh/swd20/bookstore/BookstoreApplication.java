@@ -27,11 +27,11 @@ public class BookstoreApplication {
 		return (args) -> {
 			log.info("insert example data to database");
 			
-			Category horror = new Category("Horror");
+			Category horror = new Category("horror");
 			categoryRepository.save(horror);
-			Category historical = new Category("Historical");
+			Category historical = new Category("historical");
 			categoryRepository.save(historical);
-			Category fiction = new Category("Fiction");
+			Category fiction = new Category("fiction");
 			categoryRepository.save(fiction);
 			
 			log.info("fetch all categories");

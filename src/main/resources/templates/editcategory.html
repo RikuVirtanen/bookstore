@@ -3,17 +3,23 @@
 <head>
 	<title>Edit category</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" th:href="@{../css/bootstrap.min.css}" />
+	<link type="text/css" rel="stylesheet" href="css/styles.css" th:href="@{../css/styles.css}"/>
 </head>
 <body>
-	<h1>Edit category</h1>
-	<div>
+	<div class="container">
+		<h1>Edit category</h1>
+	</div>
+	<div style="clear: both; display: block; height: 30px;"></div>
+	<div class="add-book-form container">
 		<form th:object="${category}" th:action="@{/savecategory}" action="#" method="post">
-			<label for="id">Id</label>
+			<label hidden="hidden" for="id">Id</label>
 			<input type="hidden" id="id" th:field="${category.id}" /><br/>
 			<label for="name">Name</label>
 			<input type="text" id="name" th:field="*{name}" /><br/>
 			
-			<input type="submit" value="Save"></input> <input type="reset" value="Reset" />
+			<input class="btn btn-success" type="submit" value="Save" /> 
+			<input class="btn btn-danger" type="reset" value="Reset" />
 		</form>
 	</div>
 </body>

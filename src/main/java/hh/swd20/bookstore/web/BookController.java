@@ -75,6 +75,7 @@ public class BookController {
 		return "addbook";
 	}
 	
+	@PreAuthorize(value="hasAuthority('ADMIN')")
 	@RequestMapping(value="/edit/{id}", method=RequestMethod.GET)
 	public String editBook(@PathVariable("id") Long bookId, Model model) {
 		model.addAttribute("book", bookRepository.findById(bookId).get());

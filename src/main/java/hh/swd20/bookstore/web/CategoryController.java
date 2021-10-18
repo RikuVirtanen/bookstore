@@ -59,14 +59,18 @@ public class CategoryController {
 	
 	@RequestMapping(value="/savecategory", method=RequestMethod.POST)
 	public String saveCategory(@ModelAttribute Category category) {
+		if(!repository.findByName(category.getName().toLowerCase()).isEmpty()) {
+			return "redirect:/categorylist";
+		}
+		category.setName(category.getName().toLowerCase());
 		repository.save(category);
 		return "redirect:/categorylist";
 	}
-	
+	@PreAuthorize(value="hasAuthority('ADMIN')")
 	@RequestMapping(value="/editcategory/{id}", method=RequestMethod.GET)
 	public String editCategory(@PathVariable("id") Long categoryId, Model model) {
 		model.addAttribute("category", repository.findById(categoryId).get());
-		return "editcategory";
+		return "/editcategory";
 	}
 	@PreAuthorize(value="hasAuthority('ADMIN')")
 	@RequestMapping(value="/deletecategory/{id}", method=RequestMethod.GET)

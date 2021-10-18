@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<html xmlns:th="http://www.thymeleaf.org" 
+xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 <head>
 <title>Bookstore</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
@@ -22,11 +23,26 @@
 		<table class="table table-striped">
 			<tr>
 				<th>Name: </th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
+				<th sec:authorize="hasAuthority('ADMIN')"></th>
 			</tr>
 			<tr th:each = "category : ${categories}">
 				<td th:text="${category.name}"></td>
-				<td sec:authorize="hasAuthority('ADMIN')"><a class="btn btn-danger" th:href="@{/deletecategory/{id}(id=${category.id})}">Delete</a></td>
-				<!-- <td><a class="btn btn-success" th:href="@{/editcategory/{id}(id=${category.id})}">Edit</a></td> -->
+				<td sec:authorize="hasAuthority('ADMIN')">
+					<a 
+						class="btn btn-success" 
+						th:href="@{/editcategory/{id}(id=${category.id})}" >
+							Edit
+					</a>
+				</td>
+				<td sec:authorize="hasAuthority('ADMIN')">
+					<a 
+						class="btn btn-danger" 
+						th:href="@{/deletecategory/{id}(id=${category.id})}" 
+						onclick="return confirm('Are you sure you wish to delete')" >
+							Delete
+					</a>
+				</td>
 			</tr>
 		</table>
 		<a class="btn btn-success" href="/addcategory">Add category</a>

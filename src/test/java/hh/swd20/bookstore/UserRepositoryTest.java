@@ -34,8 +34,8 @@ public class UserRepositoryTest {
 	
 	@Test
 	public void deleteUser() {
-		repository.deleteById(repository.findByUsername("test").getId());
-		assertThat(repository.findByUsername("test")).isNull();
+		repository.deleteById(repository.findByUsername("user").getId());
+		assertThat(repository.findByUsername("user")).isNull();
 	}
 	
 }
